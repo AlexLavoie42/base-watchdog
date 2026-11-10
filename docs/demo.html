@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>base-watchdog — 1-minute demo (real recorded session)</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/asciinema-player@3/dist/bundle.css">
+<style>
+  body { background: #121212; color: #eee; font-family: system-ui, sans-serif; max-width: 980px; margin: 2rem auto; padding: 0 1rem; }
+  h1 { font-size: 1.4rem; } p { color: #bbb; }
+  a { color: #6ea8fe; }
+  .note { background:#1d283c; padding:.6rem .9rem; border-radius:8px; font-size:.9rem; }
+</style>
+</head>
+<body>
+<h1>base-watchdog — self-hosted Base payment monitor</h1>
+<p class="note">This is a <b>real recorded terminal session</b> (asciinema): package install, a live one-shot scan of Base mainnet via public RPCs, and the companion <a href="https://x402-verifier.onrender.com/health">x402 payment-verification endpoint</a> answering a paid-gate challenge. Nothing staged.</p>
+<div id="player"></div>
+<script src="https://cdn.jsdelivr.net/npm/asciinema-player@3/dist/bundle.js"></script>
+<script>
+  AsciinemaPlayer.create('demo.cast', document.getElementById('player'), {
+    cols: 110, rows: 30, autoPlay: true, loop: true, speed: 1.4, theme: 'dracula'
+  });
+</script>
+<p>Repo: <a href="https://github.com/AlexLavoie42/base-watchdog">github.com/AlexLavoie42/base-watchdog</a> — MIT, offline test suites, CI on Node 20/22/24.</p>
+</body>
+</html>
