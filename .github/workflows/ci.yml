@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install & test wallet package
+        working-directory: packages/wallet
+        run: |
+          npm ci
+          npx tsc --noEmit
+          npm test
+      - name: Install & test base-watchdog package
+        working-directory: packages/base-watchdog
+        run: |
+          npm ci
+          npx tsc --noEmit
+          npm test
