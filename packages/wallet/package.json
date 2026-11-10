@@ -1,0 +1,26 @@
+{
+  "name": "zero-wallet",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal, auditable wallet interface for the ZERO_CAPITAL operation. Read-only by default; signing disabled at $0.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "cli": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

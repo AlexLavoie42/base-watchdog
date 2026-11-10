@@ -1,0 +1,7 @@
+# Base payment monitor
+
+Uses public Base mainnet RPC reads and records direct incoming native transfers and ERC-20 Transfer logs as unverified in the CSV. Checks chain ID and rotates RPCs on scan failures. Saves the last scanned block and address beside the ledger in `watchdog-state.json`; do not share a state file between addresses. First start begins at the current head. A failed scan does not advance the cursor. State is saved after each successful range. Do not run multiple instances against the same state or CSV.
+
+Configuration: `WATCH_ADDRESS` (required); `RPC_URLS` (comma-separated); `POLL_SECONDS` (default 30); `MAX_NATIVE_SCAN` (default 100, maximum 2000); `LEDGER_PATH` (default `./watchdog-ledger.csv`); `WEBHOOK_URL` (optional). Setting a webhook URL alone does not authorize notification: the operator must also add `payment-notifications` to `webhooks` in `../../PERMISSIONS.json`. A blocked or failed notification does not interrupt monitoring; notifications are best-effort and are not retried. Keep the webhook URL private. `WATCHDOG_ONCE=1` scans the last six blocks and exits without updating the ledger or cursor.
+
+This is not an exhaustive account history: contract-internal native transfers are not scanned, and token logs may be misleading. There is no confirmation delay or reorganization reconciliation; independently verify confirmed receipts. RPC outages and rate limits can delay monitoring. A process supervisor is needed to restart after startup errors or machine restarts. See `../../wallet/README.md` for ledger limits.

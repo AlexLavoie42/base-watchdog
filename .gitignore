@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.log
+watchdog-state.json
+watchdog-ledger.csv

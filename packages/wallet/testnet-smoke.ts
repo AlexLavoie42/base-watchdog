@@ -1,0 +1,10 @@
+import { publicClientTestnet, chainIdOf, nativeBalance, fetchIncomingErc20, fetchIncomingNative } from "./src/monitor.js";
+const client = publicClientTestnet();
+const chain = await chainIdOf(client);
+if (chain !== 84532) throw new Error("RPC is not Base Sepolia");
+const address = "0x0000000000000000000000000000000000000000";
+const head = await client.getBlockNumber();
+const balance = await nativeBalance(client, address);
+const events = await fetchIncomingErc20(client, address, head, head);
+const direct = await fetchIncomingNative(client, address, head, head);
+console.log(JSON.stringify({ chain, block: head.toString(), address, balanceWei: balance.toString(), tokenEvents: events.length, directTransfers: direct.length }));
